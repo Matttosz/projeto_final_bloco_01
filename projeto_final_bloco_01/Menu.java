@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 import projeto_final_bloco_01.util.CoresMattoszLabel;
 
-public class MattoszLabel {
+public class Menu {
 
 	public static void main(String[] args) {
 		Scanner read = new Scanner(System.in);
@@ -96,15 +96,14 @@ public class MattoszLabel {
                             String resposta = read.next().toLowerCase();
 
                            // AlbumController.CadastrarAlbums(
-                              //  new Farmaco(farmaciaController.gerarId(), nomeAlbum, tipoAlbum, preco, generico)
-                            
-                            //keypress();
+                             //  new album(farmaciaController.gerarId(), nomeAlbum, tipoAlbum, preco, generico)                            
+                            keypress();
                             break;
 
                         case "sim":
                         	//adicionarbrasil
                             //farmaciaController.CadastrarAlbums(
-                              //      new Cosmetico(farmaciaController.gerarId(), nomeAlbum, tipoAlbum, preco, fragancia));
+                              //      new album(farmaciaController.gerarId(), nomeAlbum, tipoAlbum, preco, fragancia));
                             keypress();
                             break;
 
