@@ -4,30 +4,32 @@ import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import projeto_final_bloco_01.controller.MattoszLabelController;
+import projeto_final_bloco_01.model.Album;
 import projeto_final_bloco_01.util.CoresMattoszLabel;
 
 public class Menu {
 
 	public static void main(String[] args) {
 		Scanner read = new Scanner(System.in);
+		MattoszLabelController LabelController = new MattoszLabelController();
 		
 		int opcaoAlbum, valor, lancamento, estoque;
-		String nomeArtista, nomeAlbum, genero, melhorMusica, tipo = null;
-		int nacional;
+		String nomeArtista, nomeAlbum, genero, melhorMusica, nacionalidade, tipo = null, atualizar;
+		
 		
 		while (true) {
             System.out.println(CoresMattoszLabel.ANSI_WHITE_BACKGROUND_BRIGHT);
             System.out.println(CoresMattoszLabel.ANSI_WHITE_BACKGROUND_BRIGHT + CoresMattoszLabel.TEXT_BLUE_BOLD + "=========================================");
-            System.out.println(CoresMattoszLabel.ANSI_WHITE_BACKGROUND_BRIGHT + CoresMattoszLabel.TEXT_RED_BOLD  + "     Mattosz Records - Menu Principal   ");
+            System.out.println(CoresMattoszLabel.ANSI_WHITE_BACKGROUND_BRIGHT + CoresMattoszLabel.TEXT_RED_BOLD  + "     Mattosz Records - Menu Principal    ");
             System.out.println(CoresMattoszLabel.ANSI_WHITE_BACKGROUND_BRIGHT + CoresMattoszLabel.TEXT_BLUE_BOLD + "=========================================");
             System.out.println(CoresMattoszLabel.ANSI_WHITE_BACKGROUND_BRIGHT + CoresMattoszLabel.TEXT_RED_BOLD  + "0 - Sair                                 ");
-            System.out.println(CoresMattoszLabel.ANSI_WHITE_BACKGROUND_BRIGHT + CoresMattoszLabel.TEXT_RED_BOLD  + "1 - Adicionar um Album                 ");
-            System.out.println(CoresMattoszLabel.ANSI_WHITE_BACKGROUND_BRIGHT + CoresMattoszLabel.TEXT_RED_BOLD  + "2 - Listar todos os Albuns");
-            System.out.println(CoresMattoszLabel.ANSI_WHITE_BACKGROUND_BRIGHT + CoresMattoszLabel.TEXT_RED_BOLD  + "3 - Listar todos os Artistas");
-            System.out.println(CoresMattoszLabel.ANSI_WHITE_BACKGROUND_BRIGHT + CoresMattoszLabel.TEXT_RED_BOLD  + "4 - Procurar um Album por Nome         ");
-            System.out.println(CoresMattoszLabel.ANSI_WHITE_BACKGROUND_BRIGHT + CoresMattoszLabel.TEXT_RED_BOLD  + "5 - Procurar Artista por nome");
-            System.out.println(CoresMattoszLabel.ANSI_WHITE_BACKGROUND_BRIGHT + CoresMattoszLabel.TEXT_RED_BOLD  + "6 - Atualizar Informações de um Album  ");
-            System.out.println(CoresMattoszLabel.ANSI_WHITE_BACKGROUND_BRIGHT + CoresMattoszLabel.TEXT_RED_BOLD  + "7 - Deletar Album em Estoque           ");
+            System.out.println(CoresMattoszLabel.ANSI_WHITE_BACKGROUND_BRIGHT + CoresMattoszLabel.TEXT_RED_BOLD  + "1 - Adicionar um Album                   ");
+            System.out.println(CoresMattoszLabel.ANSI_WHITE_BACKGROUND_BRIGHT + CoresMattoszLabel.TEXT_RED_BOLD  + "2 - Listar todos os Albuns               ");
+            System.out.println(CoresMattoszLabel.ANSI_WHITE_BACKGROUND_BRIGHT + CoresMattoszLabel.TEXT_RED_BOLD  + "3 - Listar todos os Artistas             ");
+            System.out.println(CoresMattoszLabel.ANSI_WHITE_BACKGROUND_BRIGHT + CoresMattoszLabel.TEXT_RED_BOLD  + "4 - Procurar um Album por Nome           ");
+            System.out.println(CoresMattoszLabel.ANSI_WHITE_BACKGROUND_BRIGHT + CoresMattoszLabel.TEXT_RED_BOLD  + "5 - Atualizar Informações de um Album    ");
+            System.out.println(CoresMattoszLabel.ANSI_WHITE_BACKGROUND_BRIGHT + CoresMattoszLabel.TEXT_RED_BOLD  + "6 - Deletar Album em Estoque             ");
             System.out.println(CoresMattoszLabel.ANSI_WHITE_BACKGROUND_BRIGHT + CoresMattoszLabel.TEXT_BLUE_BOLD + "=========================================");
             System.out.print(CoresMattoszLabel.ANSI_WHITE_BACKGROUND_BRIGHT   + CoresMattoszLabel.TEXT_RED_BOLD  + "\nEscolha uma opção: ");
 
@@ -75,72 +77,85 @@ public class Menu {
                     System.out.print("R: ");
                     lancamento = read.nextInt();
                     
-                    System.out.println("Se trata de um album nacional? (Sim/Não)");
+                    System.out.println("Se trata de um album Brasileiro? (Sim/Não)");
                     System.out.println("Ex: Sim");
                     System.out.print("R: ");
-                    nacional = read.nextInt();
+                    nacionalidade = read.next();
+                    
+                    System.out.println("Qual o valor (em centavos) de cada unidade do álbum?");
+                    System.out.print("R: ");
+                    valor = read.nextInt();
                     
                     System.out.println("Quantas Unidades no estoque?");
                     System.out.println("Ex: 5");
                     System.out.print("R: ");
                     estoque = read.nextInt();
                     
+                    System.out.println("Qual a música mais recomendada do álbum?");
+                    System.out.print("R: ");
+                    read.nextLine(); 
+                    melhorMusica = read.nextLine();
+                    String pais;
                     
-                    nacional = tipo.equals("Nao") ? 1 : 2;
+                    switch (nacionalidade) {
+                    
+                    case "nao":
+                        System.out.println("\n=======================================\n");
+                        System.out.println("Qual o país de origem?");
+                        pais = read.next();
+                        break;
 
-                    switch (tipo) 
-                    {
-                        case "nao":
-                            System.out.println("\n=======================================\n");
-                            System.out.println("Qual o país de origem?");
-                            String resposta = read.next().toLowerCase();
+                    case "sim":
+                        pais = "brasileiro";
+                        break;
 
-                           // AlbumController.CadastrarAlbums(
-                             //  new album(farmaciaController.gerarId(), nomeAlbum, tipoAlbum, preco, generico)                            
-                            keypress();
-                            break;
+                    default:
+                        System.out.println(CoresMattoszLabel.TEXT_RED_BOLD + "Tipo inválido. Digite 'sim' ou 'nao'.");
+                        return;
+                }
 
-                        case "sim":
-                        	//adicionarbrasil
-                            //farmaciaController.CadastrarAlbums(
-                              //      new album(farmaciaController.gerarId(), nomeAlbum, tipoAlbum, preco, fragancia));
-                            keypress();
-                            break;
-
-                        default:
-                            System.out.println(CoresMattoszLabel.TEXT_RED_BOLD + "Tipo inválido. Digite 'farmaco' ou 'cosmetico'.");
-                            break;
-                    }
-                    keypress();
-                    break;
-
-                
-                default:
-                    System.out.println(CoresMattoszLabel.TEXT_BLUE_BOLD + "================================================================");
-                    System.out.println(CoresMattoszLabel.TEXT_RED_BOLD  + "\nOpção inválida! Tente novamente.");
-                    System.out.println(CoresMattoszLabel.TEXT_BLUE_BOLD + "================================================================");
-                    keypress();
-                    break;
-                case 3:
-                	//listar artistas
+                LabelController.cadastrarAlbum(
+                    new Album(nomeAlbum, nomeArtista, genero, LabelController.gerarId(),
+                              valor, estoque, pais, lancamento, melhorMusica));
+                    
+                case 2:
+                	System.out.println("=======================================");
+                    System.out.println("\nAqui está nossa coleção em estoque:");
+                    System.out.println("=======================================");
+                    LabelController.listarAlbums();
                 	keypress();
                 	break;
+                case 3:
+                	System.out.println("===============================================");
+                    System.out.println("\nDigite o nome do Album que deseja procurar:");
+                    System.out.println("===============================================");
+                    String tituloAlbum = read.nextLine();
+                    LabelController.procurarAlbum(tituloAlbum);
+                    keypress();
+                    break;
+      
                 case 4:
-                	//procurar album por nome
+                	 System.out.println("==================================================");
+                     System.out.println("\nAtualizar Produto :");
+                     System.out.println("==================================================");
+                     atualizar = read.next();
+                     LabelController.atualizarAlbum(atualizar);
                 	keypress();
                 	break;
                 case 5:
-                	//Procurar artista
-                	keypress();
-                	break;
-                case 6:
-                	//Atualizar informaçoes de album
-                	keypress();
-                	break;
-                case 7:
-                	//deletar album
-                	keypress();
-                	break;
+                	System.out.println("============================================");
+                    System.out.println("\nDigite o ID do produto que deseja deletar:");
+                    System.out.println("============================================");
+                    try {
+                        String tituloA = read.next();
+                        LabelController.deletarAlbum(tituloA);
+                    } catch (InputMismatchException e) {
+                        System.out.println(CoresMattoszLabel.TEXT_RED_BOLD + "ID inválido.");
+                        read.nextLine();
+                    }
+                    keypress();
+                    break;
+                 
                 	
                 	
                     
