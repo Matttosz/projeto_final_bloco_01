@@ -2,18 +2,18 @@ package projeto_final_bloco_01.model;
 
 import java.text.NumberFormat;
 
-public class MattoszLabel {
+public abstract class MattoszLabel {
 	
 	private String titulo;
 	private String artista;
 	private String genero;
 	private int    valor;
 	private int    estoque;
-	private int    nacional;
+	private String    nacionalidade;
 	private int    lancamento;
 	private int    albumId;
 	
-	public MattoszLabel(String titulo, String artista, String genero,int albumId, int valor, int estoque, int nacional,
+	public MattoszLabel(String titulo, String artista, String genero,int albumId, int valor, int estoque, String nacionalidade,
 			int lancamento) {
 		super();
 		this.titulo = titulo;
@@ -22,7 +22,7 @@ public class MattoszLabel {
 		this.albumId =albumId;
 		this.valor = valor;
 		this.estoque = estoque;
-		this.nacional = nacional;
+		this.nacionalidade = nacionalidade;
 		this.lancamento = lancamento;
 	}
 	
@@ -56,11 +56,11 @@ public class MattoszLabel {
 	public void setEstoque(int estoque) {
 		this.estoque = estoque;
 	}
-	public int getNacional() {
-		return nacional;
+	public String getNacional() {
+		return nacionalidade;
 	}
-	public void setNacional(int nacional) {
-		this.nacional = nacional;
+	public void setNacional(String nacionalidade) {
+		this.nacionalidade = nacionalidade;
 	}
 	public int getLancamento() {
 		return lancamento;
@@ -88,7 +88,7 @@ public class MattoszLabel {
 		System.out.println("Título: " + this.titulo + " | Ano de Lançamento: " + this.lancamento);
 		System.out.println("Principal Gênero :" + this.genero );
 		System.out.println("principal Artista: " + this.artista);
-		System.out.println("Nacionalidade: " + this.nacional);
+		System.out.println("Nacionalidade: " + this.nacionalidade);
 		System.out.println("Quantidade no Estoque: " + this.estoque);		
 		System.out.println("Valor por Unidade: " + formatarMoeda.format(this.valor));
 	}
